@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Perlin Noise/src/vendor/imgui
+/Perlin Noise/src/vendor/SDL/include
