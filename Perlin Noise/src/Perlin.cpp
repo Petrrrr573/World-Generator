@@ -113,32 +113,32 @@ void Perlin::genPerlin() {
             pixels[index + 3] = color;
 
             if (showColor) {
-                if (val > -0.3 && val < 0) {
+                if (val < mountainsHeight && val > rockHeight) {
+                    pixels[index + 1] = 220;
+                    pixels[index + 2] = 220;
+                    pixels[index + 3] = 220;
+                }
+                else if (val < rockHeight && val > hillHeight) {
+                    pixels[index + 1] = 50;
+                    pixels[index + 2] = 50;
+                    pixels[index + 3] = 50;
+                }
+                else if (val < hillHeight && val > grassHeight) {
+                    pixels[index + 1] = 0;
+                    pixels[index + 2] = 180;
+                    pixels[index + 3] = 0;
+                }
+                else if (val < grassHeight && val > sandHeight) {
                     pixels[index + 1] = 0;
                     pixels[index + 2] = 200;
                     pixels[index + 3] = 0;
                 }
-                else if (val > 0.7) {
-                    pixels[index + 1] = 240;
-                    pixels[index + 2] = 240;
-                    pixels[index + 3] = 240;
-                }
-                else if (val < 0.7 && val > 0.5) {
-                    pixels[index + 1] = 80;
-                    pixels[index + 2] = 80;
-                    pixels[index + 3] = 80;
-                }
-                else if (val < 0.5 && val > 0) {
-                    pixels[index + 1] = 0;
-                    pixels[index + 2] = 180;
-                    pixels[index + 3] = 180;
-                }
-                else if (val < -0.3 && val > -0.5) {
+                else if (val < sandHeight && val > waterHeight) {
                     pixels[index + 1] = 0;
                     pixels[index + 2] = 200;
                     pixels[index + 3] = 200;
                 }
-                else if (val < -0.5) {
+                else if (val < waterHeight) {
                     pixels[index + 1] = 200;
                     pixels[index + 2] = 0;
                     pixels[index + 3] = 0;

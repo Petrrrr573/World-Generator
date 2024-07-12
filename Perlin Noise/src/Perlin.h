@@ -16,6 +16,13 @@ public:
 	int seed;
 	int size;
 
+	float waterHeight = -0.4;
+	float sandHeight = -0.3;
+	float grassHeight = 0.1;
+	float hillHeight = 0.3;
+	float rockHeight = 0.7;
+	float mountainsHeight = 1;
+
 	Uint8* pixels;
 
 	SDL_Texture* texture;

@@ -90,18 +90,30 @@ int main(int, char**)
             ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
             ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
 
-            ImGui::SliderInt("Grid size", &perlin.grid_size, 1, 400);  
-            ImGui::SliderInt("Octaves", &perlin.octaves, 1, 12);
-            ImGui::SliderInt("SEED", &perlin.seed, 1, 10000);
             ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 
+            ImGui::SliderInt("Grid size", &perlin.grid_size, 1, 400); 
+            ImGui::SliderInt("Octaves", &perlin.octaves, 1, 12);
+            ImGui::SliderInt("SEED", &perlin.seed, 1, 10000);
             ImGui::Checkbox("Colors", &perlin.showColor);
+            ImGui::SameLine();
             if (ImGui::Button("Reload")) {
                 perlin.genPerlin();
                 perlin.UpdateTexture();
             }
             ImGui::SameLine();
-            ImGui::Text("counter = %d", counter);
+            ImGui::VSliderFloat("##waterHeight", ImVec2(18, 160), &perlin.waterHeight, -1.0f, 1.0f, "");
+            ImGui::SameLine();
+            ImGui::VSliderFloat("##sandHeight", ImVec2(18, 160), &perlin.sandHeight, -1.0f, 1.0f, "");
+            ImGui::SameLine();
+            ImGui::VSliderFloat("##grassHeight", ImVec2(18, 160), &perlin.grassHeight, -1.0f, 1.0f, "");
+            ImGui::SameLine();
+            ImGui::VSliderFloat("##hillHeight", ImVec2(18, 160), &perlin.hillHeight, -1.0f, 1.0f, "");
+            ImGui::SameLine();
+            ImGui::VSliderFloat("##rockHeight", ImVec2(18, 160), &perlin.rockHeight, -1.0f, 1.0f, "");
+            ImGui::SameLine();
+            ImGui::VSliderFloat("##mountainsHeight", ImVec2(18, 160), &perlin.mountainsHeight, -1.0f, 1.0f, "");
+
 
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
             ImGui::End();
