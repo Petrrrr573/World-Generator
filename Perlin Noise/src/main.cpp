@@ -3,12 +3,17 @@
 #include "imgui_impl_sdlrenderer2.h"
 #include <stdio.h>
 #include <SDL.h>
+#include <SDL_image.h>
 
 #include <iostream>
+#include <chrono>
+
 
 #include "Perlin.h"
 
+
 int WINDOW_WIDTH = 1280, WINDOW_HEIGHT = 720;
+
 
 // Main code
 int main(int, char**)
@@ -58,6 +63,13 @@ int main(int, char**)
     perlin.genPerlin();
 
     perlin.UpdateTexture();
+
+    SDL_Texture* squareTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/grassBlock.png");
+
+    int size = 10;
+    float scale = 1;
+    float freq = 0.0025;
+    int ampl = 40;
 
     // Main loop
     bool done = false;
@@ -114,6 +126,11 @@ int main(int, char**)
             ImGui::SameLine();
             ImGui::VSliderFloat("##mountainsHeight", ImVec2(18, 160), &perlin.mountainsHeight, -1.0f, 1.0f, "");
 
+            ImGui::SliderFloat("Scale", &scale, 0, 2);
+            ImGui::SliderInt("Amp", &ampl, 0, 40);
+            ImGui::SliderFloat("Freq", &freq, 0.0f, 2.0f);
+            ImGui::SliderInt("Size", &size, 0, 96);
+
 
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
             ImGui::End();
@@ -126,7 +143,40 @@ int main(int, char**)
 
         perlin.RenderTexture(renderer);
 
+
+        // Get current time in milliseconds
+        auto now = std::chrono::system_clock::now();
+        auto duration = now.time_since_epoch();
+        auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+
+
+                float wave_sin = ampl * std::sin(0.0025 * millis + x * 0.5);
+                float wave_cos = ampl * std::cos(0.0025 * millis + y * 0.5);
+
+
+                float x0 = x * 1 * 48*scale + y * -1 * 48*scale;
+                float y0 = x * 0.5 * 48*scale + y * 0.5 * 48*scale;
+
+                SDL_Rect rect1 = { x0 - 48*scale + WINDOW_WIDTH / 2, y0 - 48*scale + WINDOW_HEIGHT / 4 + wave_sin + wave_cos, 96*scale, 96*scale};
+                SDL_RenderCopy(renderer, squareTexture, nullptr, &rect1);
+
+            }
+        }
+        //int arr[4][2] = { {1, 1},{1, 2},{2, 1},{2, 2} };
+        //for (int i = 0; i < 4; i++) {
+        //    float x0 = arr[i][0] * 1 * 48 + arr[i][1] * -1 * 48;
+        //    float y0 = arr[i][0] * 0.5 * 48 + arr[i][1] * 0.5 * 48;
+
+        //    SDL_Rect rect1 = { x0 - 48 + WINDOW_WIDTH / 2, y0 - 48 + WINDOW_HEIGHT / 2, 96, 96 };
+        //    SDL_RenderCopy(renderer, squareTexture, nullptr, &rect1);
+        //}
+
+
         ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
+
         SDL_RenderPresent(renderer);
     }
 

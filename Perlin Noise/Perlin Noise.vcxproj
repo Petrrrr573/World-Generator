@@ -30,6 +30,7 @@
     <ClCompile Include="src\vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Users\Petr\AppData\Local\Temp\Rar$DRa22924.45658\SDL2_image-2.8.2\include\SDL_image.h" />
     <ClInclude Include="src\Perlin.h" />
     <ClInclude Include="src\vendor\imgui\imconfig.h" />
     <ClInclude Include="src\vendor\imgui\imgui.h" />
@@ -120,11 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\SDL\lib\x64\SDL2.dll" />
+    <None Include="src\vendor\SDL\lib\x64\SDL2_image.dll" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="src\vendor\SDL\lib\x64\SDL2.lib" />
     <Library Include="src\vendor\SDL\lib\x64\SDL2main.lib" />
     <Library Include="src\vendor\SDL\lib\x64\SDL2test.lib" />
+    <Library Include="src\vendor\SDL\lib\x64\SDL2_image.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -180,22 +183,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)Perlin Noise\src\vendor\SDL\include;$(IncludePath)</IncludePath>
-    <ExecutablePath>SDL.lib;SDL2main.lib;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>SDL.lib;SDL2main.lib;SDL2_image.lib;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(SolutionDir)Perlin Noise\src\vendor\SLD\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)Perlin Noise\src\vendor\SDL\include;$(IncludePath)</IncludePath>
-    <ExecutablePath>SDL.lib;SDL2main.lib;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>SDL.lib;SDL2main.lib;SDL2_image.lib;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(SolutionDir)Perlin Noise\src\vendor\SLD\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)Perlin Noise\src\vendor\SDL\include;$(IncludePath)</IncludePath>
-    <ExecutablePath>SDL.lib;SDL2main.lib;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>SDL.lib;SDL2main.lib;SDL2_image.lib;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(SolutionDir)Perlin Noise\src\vendor\SLD\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)Perlin Noise\src\vendor\SDL\include;$(IncludePath)</IncludePath>
-    <ExecutablePath>SDL.lib;SDL2main.lib;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath>SDL.lib;SDL2main.lib;SDL2_image.lib;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(SolutionDir)Perlin Noise\src\vendor\SLD\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

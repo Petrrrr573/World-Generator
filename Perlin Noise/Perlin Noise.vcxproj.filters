@@ -305,13 +305,18 @@
     <ClInclude Include="src\Perlin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Users\Petr\AppData\Local\Temp\Rar$DRa22924.45658\SDL2_image-2.8.2\include\SDL_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\SDL\lib\x64\SDL2.dll" />
+    <None Include="src\vendor\SDL\lib\x64\SDL2_image.dll" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="src\vendor\SDL\lib\x64\SDL2.lib" />
     <Library Include="src\vendor\SDL\lib\x64\SDL2main.lib" />
     <Library Include="src\vendor\SDL\lib\x64\SDL2test.lib" />
+    <Library Include="src\vendor\SDL\lib\x64\SDL2_image.lib" />
   </ItemGroup>
 </Project>
