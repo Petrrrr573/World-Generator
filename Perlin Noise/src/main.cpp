@@ -59,7 +59,7 @@ int main(int, char**)
     bool show_demo_window = true;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    Perlin perlin(renderer, 12, 20, false, 1, 96);
+    Perlin perlin(renderer, 12, 20, false, 1, 200);
 
     perlin.genPerlin();
 
@@ -125,10 +125,13 @@ int main(int, char**)
             ImGui::SliderFloat("Scale", &isometric.worldScale, 0, 2);
             ImGui::SliderInt("Amp", &isometric.waveAmpl, 0, 40);
             ImGui::SliderFloat("Freq", &isometric.waveFreq, 0.0f, 0.5f);
-            ImGui::SliderInt("Size", &isometric.worldSize, 0, 96);
+            ImGui::SliderInt("Size", &isometric.worldSize, 0, 200);
+            if (ImGui::SliderFloat("Height", &isometric.worldHeight, 0, 200)) {
+                isometric.worldBlockOffset = 2 / isometric.worldHeight;
+            }
 
-            ImGui::SliderInt("X offset", &isometric.xCamOf, -100, 100);
-            ImGui::SliderInt("Y offset", &isometric.yCamOf, -100, 100);
+            ImGui::SliderInt("X offset", &isometric.xCamOf, 0, 200 - isometric.worldSize);
+            ImGui::SliderInt("Y offset", &isometric.yCamOf, 0, 200 - isometric.worldSize);
 
 
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);

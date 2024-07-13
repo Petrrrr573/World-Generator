@@ -23,7 +23,7 @@ public:
 	float rockHeight = 0.7;
 	float mountainsHeight = 1;
 
-	float heights[96 * 96][2] = { {} };
+	float heights[200 * 200][2] = { {} };
 
 	Uint8* pixels;
 

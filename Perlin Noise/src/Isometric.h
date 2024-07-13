@@ -26,5 +26,5 @@ public:
 
 	Isometric(int size, float scale, float freq, int ampl, SDL_Renderer* renderer);
 
-	void waves(SDL_Renderer* renderer, float heights[96*96][2]);
+	void waves(SDL_Renderer* renderer, float heights[200*200][2]);
 };
