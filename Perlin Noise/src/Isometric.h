@@ -19,7 +19,7 @@ public:
 
 	SDL_Texture* texture;
 
-	float worldHeight = 50;
+	float worldHeight = 20;
 	float worldBlockOffset = 2 / worldHeight;
 
 	int xCamOf = 0, yCamOf = 0;

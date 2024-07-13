@@ -61,14 +61,67 @@ void Isometric::waves(SDL_Renderer* renderer, float heights[96 * 96][2]) {
             float x0 = x * 1 * 48 * worldScale + y * -1 * 48 * worldScale;
             float y0 = x * 0.5 * 48 * worldScale + y * 0.5 * 48 * worldScale;
 
-            for (int l = -worldHeight/2; l < offset; l++) {
+            /*for (int l = -worldHeight/2; l < offset; l++) {
                 SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2 + xCamOf*96, y0 - 48 * worldScale + 720 / 4 - l*48*worldScale - yCamOf*96, 96 * worldScale, 96 * worldScale };
 
                 if (heights[y * worldSize + x][0] == 1) {
                     rect1.h += wave_sin + wave_cos;
                 }
                 SDL_RenderCopy(renderer, texture, nullptr, &rect1);
+            }*/
+
+            if (y+1 < worldSize && x+1 < worldSize) {
+                for (int l = floor(heights[(y+1) * worldSize + x][1] / worldBlockOffset); l < offset; l++) {
+                    SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2 + xCamOf * 96, y0 - 48 * worldScale + 720 / 4 - l * 48 * worldScale - yCamOf * 96, 96 * worldScale, 96 * worldScale };
+
+                    if (heights[y * worldSize + x][0] == 1) {
+                        rect1.y += wave_sin + wave_cos;
+                    }
+
+                    // Fixes the weird gaps between sqaures
+                    rect1.w *= 1.1;
+
+                    SDL_RenderCopy(renderer, texture, nullptr, &rect1);
+                }
+
+                for (int l = floor(heights[y * worldSize + x + 1][1] / worldBlockOffset); l < offset; l++) {
+                    SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2 + xCamOf * 96, y0 - 48 * worldScale + 720 / 4 - l * 48 * worldScale - yCamOf * 96, 96 * worldScale, 96 * worldScale };
+
+                    if (heights[y * worldSize + x][0] == 1) {
+                        rect1.y += wave_sin + wave_cos;
+                    }
+
+                    // Fixes the weird gaps between sqaures
+                    rect1.w *= 1.1;
+
+                    SDL_RenderCopy(renderer, texture, nullptr, &rect1);
+                }
             }
+            else {
+                for (int l = -worldHeight/2; l < offset; l++) {
+                    SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2 + xCamOf*96, y0 - 48 * worldScale + 720 / 4 - l*48*worldScale - yCamOf*96, 96 * worldScale, 96 * worldScale };
+
+                    if (heights[y * worldSize + x][0] == 1) {
+                        rect1.h += wave_sin + wave_cos;
+                    }
+
+                    // Fixes the weird gaps between sqaures
+                    rect1.w *= 1.1;
+
+                    SDL_RenderCopy(renderer, texture, nullptr, &rect1);
+                }
+            }
+
+            SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2 + xCamOf * 96, y0 - 48 * worldScale + 720 / 4 - offset * 48 * worldScale - yCamOf * 96, 96 * worldScale, 96 * worldScale };
+
+            if (heights[y * worldSize + x][0] == 1) {
+                rect1.h += wave_sin + wave_cos;
+            }
+
+            // Fixes the weird gaps between sqaures
+            rect1.w *= 1.1;
+
+            SDL_RenderCopy(renderer, texture, nullptr, &rect1);
 
         }
     }
