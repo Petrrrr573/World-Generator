@@ -10,6 +10,7 @@
 
 
 #include "Perlin.h"
+#include "Isometric.h"
 
 
 int WINDOW_WIDTH = 1280, WINDOW_HEIGHT = 720;
@@ -58,18 +59,13 @@ int main(int, char**)
     bool show_demo_window = true;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    Perlin perlin(renderer, 12, 200, false, 1, 400);
+    Perlin perlin(renderer, 12, 20, false, 1, 96);
 
     perlin.genPerlin();
 
     perlin.UpdateTexture();
 
-    SDL_Texture* squareTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/grassBlock.png");
-
-    int size = 10;
-    float scale = 1;
-    float freq = 0.0025;
-    int ampl = 40;
+    Isometric isometric(10, 1.0f, 0.0025, 40, renderer);
 
     // Main loop
     bool done = false;
@@ -126,10 +122,13 @@ int main(int, char**)
             ImGui::SameLine();
             ImGui::VSliderFloat("##mountainsHeight", ImVec2(18, 160), &perlin.mountainsHeight, -1.0f, 1.0f, "");
 
-            ImGui::SliderFloat("Scale", &scale, 0, 2);
-            ImGui::SliderInt("Amp", &ampl, 0, 40);
-            ImGui::SliderFloat("Freq", &freq, 0.0f, 2.0f);
-            ImGui::SliderInt("Size", &size, 0, 96);
+            ImGui::SliderFloat("Scale", &isometric.worldScale, 0, 2);
+            ImGui::SliderInt("Amp", &isometric.waveAmpl, 0, 40);
+            ImGui::SliderFloat("Freq", &isometric.waveFreq, 0.0f, 0.5f);
+            ImGui::SliderInt("Size", &isometric.worldSize, 0, 96);
+
+            ImGui::SliderInt("X offset", &isometric.xCamOf, -100, 100);
+            ImGui::SliderInt("Y offset", &isometric.yCamOf, -100, 100);
 
 
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
@@ -149,31 +148,7 @@ int main(int, char**)
         auto duration = now.time_since_epoch();
         auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
-        for (int x = 0; x < size; x++) {
-            for (int y = 0; y < size; y++) {
-
-
-                float wave_sin = ampl * std::sin(0.0025 * millis + x * 0.5);
-                float wave_cos = ampl * std::cos(0.0025 * millis + y * 0.5);
-
-
-                float x0 = x * 1 * 48*scale + y * -1 * 48*scale;
-                float y0 = x * 0.5 * 48*scale + y * 0.5 * 48*scale;
-
-                SDL_Rect rect1 = { x0 - 48*scale + WINDOW_WIDTH / 2, y0 - 48*scale + WINDOW_HEIGHT / 4 + wave_sin + wave_cos, 96*scale, 96*scale};
-                SDL_RenderCopy(renderer, squareTexture, nullptr, &rect1);
-
-            }
-        }
-        //int arr[4][2] = { {1, 1},{1, 2},{2, 1},{2, 2} };
-        //for (int i = 0; i < 4; i++) {
-        //    float x0 = arr[i][0] * 1 * 48 + arr[i][1] * -1 * 48;
-        //    float y0 = arr[i][0] * 0.5 * 48 + arr[i][1] * 0.5 * 48;
-
-        //    SDL_Rect rect1 = { x0 - 48 + WINDOW_WIDTH / 2, y0 - 48 + WINDOW_HEIGHT / 2, 96, 96 };
-        //    SDL_RenderCopy(renderer, squareTexture, nullptr, &rect1);
-        //}
-
+        isometric.waves(renderer, perlin.heights);
 
         ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
 

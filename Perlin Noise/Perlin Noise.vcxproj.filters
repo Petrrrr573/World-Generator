@@ -42,6 +42,9 @@
     <ClCompile Include="src\Perlin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Isometric.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\vendor\imgui\imstb_truetype.h">
@@ -306,6 +309,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Users\Petr\AppData\Local\Temp\Rar$DRa22924.45658\SDL2_image-2.8.2\include\SDL_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Isometric.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

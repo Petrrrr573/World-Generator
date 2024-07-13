@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Isometric.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Perlin.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Users\Petr\AppData\Local\Temp\Rar$DRa22924.45658\SDL2_image-2.8.2\include\SDL_image.h" />
+    <ClInclude Include="src\Isometric.h" />
     <ClInclude Include="src\Perlin.h" />
     <ClInclude Include="src\vendor\imgui\imconfig.h" />
     <ClInclude Include="src\vendor\imgui\imgui.h" />

@@ -111,37 +111,51 @@ void Perlin::genPerlin() {
             pixels[index + 1] = color;
             pixels[index + 2] = color;
             pixels[index + 3] = color;
+            heights[index / 4][0] = 6;
+            heights[index / 4][1] = val;
 
             if (showColor) {
-                if (val < mountainsHeight && val > rockHeight) {
+                if (val <= mountainsHeight && val > rockHeight) {
                     pixels[index + 1] = 220;
                     pixels[index + 2] = 220;
                     pixels[index + 3] = 220;
+                    heights[index/4][0] = 6;
+                    heights[index / 4][1] = val;
                 }
-                else if (val < rockHeight && val > hillHeight) {
+                else if (val <= rockHeight && val > hillHeight) {
                     pixels[index + 1] = 50;
                     pixels[index + 2] = 50;
                     pixels[index + 3] = 50;
+                    heights[index / 4][0] = 5;
+                    heights[index / 4][1] = val;
                 }
-                else if (val < hillHeight && val > grassHeight) {
+                else if (val <= hillHeight && val > grassHeight) {
                     pixels[index + 1] = 0;
                     pixels[index + 2] = 180;
                     pixels[index + 3] = 0;
+                    heights[index / 4][0] = 4;
+                    heights[index / 4][1] = val;
                 }
-                else if (val < grassHeight && val > sandHeight) {
+                else if (val <= grassHeight && val > sandHeight) {
                     pixels[index + 1] = 0;
                     pixels[index + 2] = 200;
                     pixels[index + 3] = 0;
+                    heights[index / 4][0] = 3;
+                    heights[index / 4][1] = val;
                 }
-                else if (val < sandHeight && val > waterHeight) {
+                else if (val <= sandHeight && val > waterHeight) {
                     pixels[index + 1] = 0;
                     pixels[index + 2] = 200;
                     pixels[index + 3] = 200;
+                    heights[index / 4][0] = 2;
+                    heights[index / 4][1] = val;
                 }
-                else if (val < waterHeight) {
+                else if (val <= waterHeight) {
                     pixels[index + 1] = 200;
                     pixels[index + 2] = 0;
                     pixels[index + 3] = 0;
+                    heights[index / 4][0] = 1;
+                    heights[index / 4][1] = val;
                 }
             }
         }
@@ -153,6 +167,6 @@ void Perlin::UpdateTexture() {
 }
 
 void Perlin::RenderTexture(SDL_Renderer* renderer) {
-    SDL_Rect rect = { 0, 0, size, size };
+    SDL_Rect rect = { 0, 0, size, size};
     SDL_RenderCopy(renderer, texture, nullptr, &rect);
 }
