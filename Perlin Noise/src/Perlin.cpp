@@ -155,7 +155,7 @@ void Perlin::genPerlin() {
                     pixels[index + 2] = 0;
                     pixels[index + 3] = 0;
                     heights[index / 4][0] = 1;
-                    heights[index / 4][1] = val;
+                    heights[index / 4][1] = waterHeight;
                 }
             }
         }
