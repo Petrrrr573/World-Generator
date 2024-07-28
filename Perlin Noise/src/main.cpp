@@ -8,9 +8,8 @@
 #include <iostream>
 #include <chrono>
 
-
-#include "Perlin.h"
 #include "Isometric.h"
+#include "Perlin.h"
 
 
 int WINDOW_WIDTH = 1280, WINDOW_HEIGHT = 720;
@@ -61,11 +60,9 @@ int main(int, char**)
 
     Perlin perlin(renderer, 12, 20, false, 1, 200);
 
-    perlin.genPerlin();
-
-    perlin.UpdateTexture();
-
     Isometric isometric(10, 1.0f, 0.0025, 40, renderer);
+    perlin.genPerlin(isometric.Cubes, isometric.worldBlockOffset, isometric.xCamOf, isometric.yCamOf);
+    perlin.UpdateTexture();
 
     // Main loop
     bool done = false;
@@ -106,7 +103,7 @@ int main(int, char**)
             ImGui::Checkbox("Colors", &perlin.showColor);
             ImGui::SameLine();
             if (ImGui::Button("Reload")) {
-                perlin.genPerlin();
+                perlin.genPerlin(isometric.Cubes, isometric.worldBlockOffset, isometric.xCamOf, isometric.yCamOf);
                 perlin.UpdateTexture();
             }
             ImGui::SameLine();

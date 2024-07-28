@@ -15,6 +15,9 @@ Isometric::Isometric(int size, float scale, float freq, int ampl, SDL_Renderer* 
     hillTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/grassBlock.png");
     rockTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/rockBlock.png");
     mountainsTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/snowBlock.png");
+
+    woodTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/woodBlock.png");
+    leafTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/leafBlock.png");
 }
 
 void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
@@ -27,7 +30,7 @@ void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
     for (int x = 0; x < worldSize; x++) {
         for (int y = 0; y < worldSize; y++) {
             double freq = (double)waveFreq;
-            double offset = 0;
+            float offset = 0;
             int type = heights[(y+yCamOf) * 200 + x+xCamOf][0];
             switch (type) {
             case 6:
@@ -114,7 +117,30 @@ void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
             rect1.w *= 1.1;
 
             SDL_RenderCopy(renderer, texture, nullptr, &rect1);
+        }
+    }
+    if (!Cubes.empty()) {
+        for (Cube cube : Cubes) {
+            cube.x -= xCamOf;
+            cube.y -= yCamOf;
+            if (cube.x > 0 && cube.x < worldSize && cube.y > 0 && cube.y < worldSize) {
+                float x0 = cube.x * 1 * 48 * worldScale + cube.y * -1 * 48 * worldScale;
+                float y0 = cube.x * 0.5 * 48 * worldScale + cube.y * 0.5 * 48 * worldScale;
+                int offset = floor(cube.height / worldBlockOffset);
 
+                SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2, y0 - 48 * worldScale + 720 / 4 - offset * 48 * worldScale, 96 * worldScale, 96 * worldScale };
+
+                // Fixes the weird gaps between sqaures
+                rect1.w *= 1.1;
+
+                if (cube.type == 7) {
+                    texture = woodTexture;
+                }
+                if (cube.type == 8) {
+                    texture = leafTexture;
+                }
+                SDL_RenderCopy(renderer, texture, nullptr, &rect1);
+            }
         }
     }
 }

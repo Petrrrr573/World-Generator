@@ -3,6 +3,8 @@
 #include <SDL.h>
 
 #include <iostream>
+#include <vector>
+#include <Isometric.h>
 
 typedef struct {
 	float x, y;
@@ -34,7 +36,9 @@ public:
 	vector2 randomGradient(float ix, float iy);
 	float dotGridGradient(int ix, int iy, float x, float y);
 	float perlin(float x, float y);
-	void genPerlin();
+	void genPerlin(std::vector<Cube>& Cubes, float worldBlockOffset, int xCamOf, int yCamOf);
 	void UpdateTexture();
 	void RenderTexture(SDL_Renderer* renderer);
 };
+
+void genTree(int x, int y, std::vector<Cube>& Cubes, float height, float worldBlockOffset);

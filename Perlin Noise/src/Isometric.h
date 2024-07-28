@@ -3,6 +3,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include <vector>
+
+typedef struct {
+	int x, y;
+	float height;
+	int type;
+} Cube;
+
 class Isometric {
 public:
 	int worldSize;
@@ -17,7 +25,12 @@ public:
 	SDL_Texture* rockTexture;
 	SDL_Texture* mountainsTexture;
 
+	SDL_Texture* woodTexture;
+	SDL_Texture* leafTexture;
+
 	SDL_Texture* texture;
+
+	std::vector<Cube> Cubes;
 
 	float worldHeight = 20;
 	float worldBlockOffset = 2 / worldHeight;
