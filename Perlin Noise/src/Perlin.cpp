@@ -136,7 +136,7 @@ void Perlin::genPerlin(std::vector<Cube>& Cubes, float worldBlockOffset, int xCa
                     heights[index / 4][0] = 4;
                     heights[index / 4][1] = val;
 
-                    if (val <= hillHeight-0.05 && val > grassHeight && rand() % 255 == 1) {
+                    if (val <= hillHeight-0.1 && val > grassHeight && rand() % treeChance == 1) {
                         genTree(x, y, Cubes, heights[(y + yCamOf) * 200 + x + xCamOf][1], worldBlockOffset);
                     }
                 }
@@ -177,11 +177,13 @@ void Perlin::RenderTexture(SDL_Renderer* renderer) {
 
 
 void genTree(int x, int y, std::vector<Cube>& Cubes, float height, float worldBlockOffset) {
-    //Trunk
-    Cubes.push_back(Cube{x, y, height + worldBlockOffset, 7});
-    Cubes.push_back(Cube{x, y, height + worldBlockOffset * 2, 7});
-    Cubes.push_back(Cube{x, y, height + worldBlockOffset * 3, 7});
 
+    int treeHeight = 7;
+
+    //Trunk
+    for (int i = 1; i < treeHeight; i++) {
+        Cubes.push_back(Cube{ x, y, height + worldBlockOffset * i, 7 });
+    }
 
     //Leaves
     float radius = 3.0f;
@@ -193,7 +195,7 @@ void genTree(int x, int y, std::vector<Cube>& Cubes, float height, float worldBl
                 if (x0* x0 + y0 * y0 + z0 * z0 > radius * radius - 3.1f)
                     continue;
 
-                Cubes.push_back(Cube{x + x0 -z0, y + y0 - z0, height + z0/6 + worldBlockOffset*5, 8});
+                Cubes.push_back(Cube{x + x0 -z0, y + y0 - z0, height + z0/6 + worldBlockOffset * treeHeight, 8});
             }
         }
     }

@@ -25,6 +25,8 @@ public:
 	float rockHeight = 0.7;
 	float mountainsHeight = 1;
 
+	int treeChance = 255;
+
 	float heights[200 * 200][2] = { {} };
 
 	Uint8* pixels;
