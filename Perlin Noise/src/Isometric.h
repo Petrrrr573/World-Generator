@@ -30,6 +30,8 @@ public:
 	SDL_Texture* leafTexture;
 	SDL_Texture* leafTexture2;
 
+	SDL_Texture* outlineTexture;
+
 	SDL_Texture* texture;
 
 	std::vector<Cube> Cubes;

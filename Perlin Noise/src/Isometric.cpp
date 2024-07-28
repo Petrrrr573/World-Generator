@@ -21,6 +21,8 @@ Isometric::Isometric(int size, float scale, float freq, int ampl, SDL_Renderer* 
 
     woodTexture2 = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/woodBlock2.png");
     leafTexture2 = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/leafBlock2.png");
+
+    outlineTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/outline.png");
 }
 
 void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
@@ -153,4 +155,30 @@ void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
             }
         }
     }
+
+    // Cursor outline
+
+    int mouseX;
+    int mouseY;
+
+    SDL_GetMouseState(& mouseX, & mouseY);
+    mouseX -= 1280 / 2;
+    mouseY -= 720 / 4;
+
+   /* float x0 = x * 1 * 48 * worldScale + y * -1 * 48 * worldScale;
+    float y0 = x * 0.5 * 48 * worldScale + y * 0.5 * 48 * worldScale;
+
+    int screenx = 48 * worldScale * (x - y);
+    int screeny = 24 * worldScale * (x + y);*/
+
+    int x = mouseX / (96 * worldScale) + mouseY / (48 * worldScale);
+    int y = mouseY / (48 * worldScale) - mouseX / (96 * worldScale);
+
+    float x0 = x * 1 * 48 * worldScale + y * -1 * 48 * worldScale;
+    float y0 = x * 0.5 * 48 * worldScale + y * 0.5 * 48 * worldScale;
+
+    SDL_Rect rect1 = { x0 - 48 * worldScale + 1280 / 2, y0 + 720 / 4, 96 * worldScale, 96 * worldScale };
+
+    texture = outlineTexture;
+    SDL_RenderCopy(renderer, texture, nullptr, &rect1);
 }
