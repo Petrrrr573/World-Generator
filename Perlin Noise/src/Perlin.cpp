@@ -177,25 +177,50 @@ void Perlin::RenderTexture(SDL_Renderer* renderer) {
 
 
 void genTree(int x, int y, std::vector<Cube>& Cubes, float height, float worldBlockOffset) {
+    int treeHeight;
+    if (rand() % 5 == 1) {
+        treeHeight = 12;
 
-    int treeHeight = 7;
+        //Trunk
+        for (int i = 1; i < treeHeight; i++) {
+            Cubes.push_back(Cube{ x, y, height + worldBlockOffset * i, 9});
+        }
 
-    //Trunk
-    for (int i = 1; i < treeHeight; i++) {
-        Cubes.push_back(Cube{ x, y, height + worldBlockOffset * i, 7 });
+        //Leaves
+        float radius = 5.0f;
+
+        for (int y0 = -radius; y0 <= radius; y0++) {
+            for (int x0 = -radius; x0 <= radius; x0++) {
+                for (int z0 = -radius; z0 <= radius; z0++) {
+
+                    if (x0 * x0 + y0 * y0 + z0 * z0 > radius * radius - 5.1f)
+                        continue;
+
+                    Cubes.push_back(Cube{ x + x0 - z0, y + y0 - z0, height + z0 / 10 + worldBlockOffset * treeHeight, 10});
+                }
+            }
+        }
     }
+    else {
+        treeHeight = 7;
 
-    //Leaves
-    float radius = 3.0f;
+        //Trunk
+        for (int i = 1; i < treeHeight; i++) {
+            Cubes.push_back(Cube{ x, y, height + worldBlockOffset * i, 7});
+        }
 
-    for (int y0 = -radius; y0 <= radius; y0++) {
-        for (int x0 = -radius; x0 <= radius; x0++) {
-            for (int z0 = -radius; z0 <= radius; z0++) {
+        //Leaves
+        float radius = 3.0f;
 
-                if (x0* x0 + y0 * y0 + z0 * z0 > radius * radius - 3.1f)
-                    continue;
+        for (int y0 = -radius; y0 <= radius; y0++) {
+            for (int x0 = -radius; x0 <= radius; x0++) {
+                for (int z0 = -radius; z0 <= radius; z0++) {
 
-                Cubes.push_back(Cube{x + x0 -z0, y + y0 - z0, height + z0/6 + worldBlockOffset * treeHeight, 8});
+                    if (x0 * x0 + y0 * y0 + z0 * z0 > radius * radius - 3.1f)
+                        continue;
+
+                    Cubes.push_back(Cube{ x + x0 - z0, y + y0 - z0, height + z0 / 6 + worldBlockOffset * treeHeight, 8});
+                }
             }
         }
     }

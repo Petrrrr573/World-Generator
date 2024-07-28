@@ -26,7 +26,9 @@ public:
 	SDL_Texture* mountainsTexture;
 
 	SDL_Texture* woodTexture;
+	SDL_Texture* woodTexture2;
 	SDL_Texture* leafTexture;
+	SDL_Texture* leafTexture2;
 
 	SDL_Texture* texture;
 

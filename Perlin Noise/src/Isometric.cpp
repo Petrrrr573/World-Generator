@@ -18,6 +18,9 @@ Isometric::Isometric(int size, float scale, float freq, int ampl, SDL_Renderer* 
 
     woodTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/woodBlock.png");
     leafTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/leafBlock.png");
+
+    woodTexture2 = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/woodBlock2.png");
+    leafTexture2 = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/leafBlock2.png");
 }
 
 void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
@@ -132,12 +135,19 @@ void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {
 
                 // Fixes the weird gaps between sqaures
                 rect1.w *= 1.1;
-
-                if (cube.type == 7) {
+                switch (cube.type) {
+                case 7:
                     texture = woodTexture;
-                }
-                if (cube.type == 8) {
+                    break;
+                case 8:
                     texture = leafTexture;
+                    break;
+                case 9:
+                    texture = woodTexture2;
+                    break;
+                case 10:
+                    texture = leafTexture2;
+                    break;
                 }
                 SDL_RenderCopy(renderer, texture, nullptr, &rect1);
             }
