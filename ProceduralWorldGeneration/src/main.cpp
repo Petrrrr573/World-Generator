@@ -55,8 +55,7 @@ int main(int, char**)
     ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
     ImGui_ImplSDLRenderer2_Init(renderer);
 
-    bool show_demo_window = true;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    ImVec4 bg_color = ImVec4(0.20f, 0.20f, 0.20f, 1.00f);
 
     Perlin perlin(renderer, 12, 100, true, 1, 200);
 
@@ -83,62 +82,153 @@ int main(int, char**)
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        if (show_demo_window)
-            ImGui::ShowDemoWindow(&show_demo_window);
+        ImGui::ShowDemoWindow();
 
         {
             static float f = 0.0f;
             static int counter = 0;
 
-            ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+            ImGui::Begin("Settings");
 
-            ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-            ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+            {
+                ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
+                if (ImGui::BeginTabBar("MyTabBar", tab_bar_flags))
+                {
+                    if (ImGui::BeginTabItem("Basic"))
+                    {
+                        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                        ImGui::ColorEdit3("Background color", (float*)&bg_color);
+                        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+                        ImGui::EndTabItem();
+                    }
+                    if (ImGui::BeginTabItem("Perlin Noise"))
+                    {
+                        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                        ImGui::SliderInt("Grid size", &perlin.grid_size, 1, 400);
+                        ImGui::SliderInt("Octaves", &perlin.octaves, 1, 12);
+                        ImGui::SliderInt("SEED", &perlin.seed, 1, 10000);
+                        ImGui::EndTabItem();
+                    }
+                    if (ImGui::BeginTabItem("Heights"))
+                    {
+                        ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
-            ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+                        ImGui::PushID("Heights");
+                        {
+                            ImGui::PushID("Water");
+                            ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(0 / 255.0f, 110 / 255.0f, 220 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(0 / 255.0f, 90 / 255.0f, 200 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(0 / 255.0f, 128 / 255.0f, 235 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(0 / 255.0f, 148 / 255.0f, 255 / 255.0f));
+                            ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.waterHeight, -1.0f, 1.0f, "");
+                            if (ImGui::IsItemActive() || ImGui::IsItemHovered())
+                                ImGui::SetTooltip("%.3f", perlin.waterHeight);
+                            ImGui::PopStyleColor(4);
+                            ImGui::PopID();
 
-            ImGui::SliderInt("Grid size", &perlin.grid_size, 1, 400); 
-            ImGui::SliderInt("Octaves", &perlin.octaves, 1, 12);
-            ImGui::SliderInt("SEED", &perlin.seed, 1, 10000);
+                            ImGui::SameLine();
+
+                            ImGui::PushID("Sand");
+                            ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(211 / 255.0f, 194 / 255.0f, 0 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(191 / 255.0f, 174 / 255.0f, 0 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(130 / 255.0f, 117 / 255.0f, 0 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(150 / 255.0f, 137 / 255.0f, 0 / 255.0f));
+                            ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.sandHeight, -1.0f, 1.0f, "");
+                            if (ImGui::IsItemActive() || ImGui::IsItemHovered())
+                                ImGui::SetTooltip("%.3f", perlin.sandHeight);
+                            ImGui::PopStyleColor(4);
+                            ImGui::PopID();
+
+                            ImGui::SameLine();
+
+                            ImGui::PushID("Grass");
+                            ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(58 / 255.0f, 147 / 255.0f, 40 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(38 / 255.0f, 127 / 255.0f, 20 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(26 / 255.0f, 86 / 255.0f, 20 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(46 / 255.0f, 106 / 255.0f, 40 / 255.0f));
+                            ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.grassHeight, -1.0f, 1.0f, "");
+                            if (ImGui::IsItemActive() || ImGui::IsItemHovered())
+                                ImGui::SetTooltip("%.3f", perlin.grassHeight);
+                            ImGui::PopStyleColor(4);
+                            ImGui::PopID();
+
+                            ImGui::SameLine();
+
+                            ImGui::PushID("Hill");
+                            ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(38 / 255.0f, 127 / 255.0f, 0 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(18 / 255.0f, 107 / 255.0f, 0 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(6 / 255.0f, 66 / 255.0f, 0 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(26 / 255.0f, 86 / 255.0f, 0 / 255.0f));
+                            ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.hillHeight, -1.0f, 1.0f, "");
+                            if (ImGui::IsItemActive() || ImGui::IsItemHovered())
+                                ImGui::SetTooltip("%.3f", perlin.waterHeight);
+                            ImGui::PopStyleColor(4);
+                            ImGui::PopID();
+
+                            ImGui::SameLine();
+
+                            ImGui::PushID("Rock");
+                            ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(138 / 255.0f, 138 / 255.0f, 138 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(118 / 255.0f, 118 / 255.0f, 118 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(98 / 255.0f, 98 / 255.0f, 98 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(118 / 255.0f, 118 / 255.0f, 118 / 255.0f));
+                            ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.rockHeight, -1.0f, 1.0f, "");
+                            if (ImGui::IsItemActive() || ImGui::IsItemHovered())
+                                ImGui::SetTooltip("%.3f", perlin.rockHeight);
+                            ImGui::PopStyleColor(4);
+                            ImGui::PopID();
+
+                            ImGui::SameLine();
+
+                            ImGui::PushID("Mountains");
+                            ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(220 / 255.0f, 220 / 255.0f, 220 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(180 / 255.0f, 180 / 255.0f, 180 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(180 / 255.0f, 180 / 255.0f, 180 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(180 / 255.0f, 180 / 255.0f, 180 / 255.0f));
+                            ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.mountainsHeight, -1.0f, 1.0f, "");
+                            if (ImGui::IsItemActive() || ImGui::IsItemHovered())
+                                ImGui::SetTooltip("%.3f", perlin.mountainsHeight);
+                            ImGui::PopStyleColor(4);
+                            ImGui::PopID();
+                        }
+                        ImGui::PopID();
+                        
+
+                        ImGui::EndTabItem();
+                    }
+                    if (ImGui::BeginTabItem("Projection"))
+                    {
+                        ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                        ImGui::SliderFloat("Scale", &isometric.worldScale, 0, 2);
+                        ImGui::SliderInt("Amp", &isometric.waveAmpl, 0, 40);
+                        ImGui::SliderFloat("Freq", &isometric.waveFreq, 0.0f, 0.5f);
+                        ImGui::SliderInt("Size", &isometric.worldSize, 0, 200 - std::max(isometric.xCamOf, isometric.yCamOf));
+                        ImGui::SliderInt("Tree Chance", &perlin.treeChance, 0, 500);
+                        if (ImGui::SliderFloat("Height", &isometric.worldHeight, 0, 200)) {
+                            isometric.worldBlockOffset = 2 / isometric.worldHeight;
+                        }
+
+                        ImGui::SliderInt("X offset", &isometric.xCamOf, 0, 200 - isometric.worldSize);
+                        ImGui::SliderInt("Y offset", &isometric.yCamOf, 0, 200 - isometric.worldSize);
+                        ImGui::EndTabItem();
+                    }
+                    ImGui::EndTabBar();
+                }
+                ImGui::Separator();
+            }
+            ImGui::Dummy(ImVec2(0.0f, 20.0f));
             ImGui::Checkbox("Colors", &perlin.showColor);
             ImGui::SameLine();
             if (ImGui::Button("Reload")) {
                 perlin.genPerlin(isometric.Cubes, isometric.worldBlockOffset, isometric.xCamOf, isometric.yCamOf);
                 perlin.UpdateTexture();
             }
-            ImGui::SameLine();
-            ImGui::VSliderFloat("##waterHeight", ImVec2(18, 160), &perlin.waterHeight, -1.0f, 1.0f, "");
-            ImGui::SameLine();
-            ImGui::VSliderFloat("##sandHeight", ImVec2(18, 160), &perlin.sandHeight, -1.0f, 1.0f, "");
-            ImGui::SameLine();
-            ImGui::VSliderFloat("##grassHeight", ImVec2(18, 160), &perlin.grassHeight, -1.0f, 1.0f, "");
-            ImGui::SameLine();
-            ImGui::VSliderFloat("##hillHeight", ImVec2(18, 160), &perlin.hillHeight, -1.0f, 1.0f, "");
-            ImGui::SameLine();
-            ImGui::VSliderFloat("##rockHeight", ImVec2(18, 160), &perlin.rockHeight, -1.0f, 1.0f, "");
-            ImGui::SameLine();
-            ImGui::VSliderFloat("##mountainsHeight", ImVec2(18, 160), &perlin.mountainsHeight, -1.0f, 1.0f, "");
-
-            ImGui::SliderFloat("Scale", &isometric.worldScale, 0, 2);
-            ImGui::SliderInt("Amp", &isometric.waveAmpl, 0, 40);
-            ImGui::SliderFloat("Freq", &isometric.waveFreq, 0.0f, 0.5f);
-            ImGui::SliderInt("Size", &isometric.worldSize, 0, 200 - std::max(isometric.xCamOf, isometric.yCamOf));
-            ImGui::SliderInt("Tree Chance", &perlin.treeChance, 0, 500);
-            if (ImGui::SliderFloat("Height", &isometric.worldHeight, 0, 200)) {
-                isometric.worldBlockOffset = 2 / isometric.worldHeight;
-            }
-
-            ImGui::SliderInt("X offset", &isometric.xCamOf, 0, 200 - isometric.worldSize);
-            ImGui::SliderInt("Y offset", &isometric.yCamOf, 0, 200 - isometric.worldSize);
-
-
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
             ImGui::End();
         }
         // Rendering
         ImGui::Render();
         SDL_RenderSetScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
-        SDL_SetRenderDrawColor(renderer, (Uint8)(clear_color.x * 255), (Uint8)(clear_color.y * 255), (Uint8)(clear_color.z * 255), (Uint8)(clear_color.w * 255));
+        SDL_SetRenderDrawColor(renderer, (Uint8)(bg_color.x * 255), (Uint8)(bg_color.y * 255), (Uint8)(bg_color.z * 255), (Uint8)(bg_color.w * 255));
         SDL_RenderClear(renderer);
 
         perlin.RenderTexture(renderer);
