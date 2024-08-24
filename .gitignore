@@ -364,8 +364,3 @@ FodyWeavers.xsd
 /ProceduralWorldGeneration/src/vendor/imgui
 /ProceduralWorldGeneration/src/vendor/SDL/include
 /ProceduralWorldGeneration/imgui.ini
-/ProceduralWorldGeneration/src/assets
-/ProceduralWorldGeneration.sln
-/ProceduralWorldGeneration/ProceduralWorldGeneration.filters
-/ProceduralWorldGeneration/ProceduralWorldGeneration.vcxproj
-/ProceduralWorldGeneration/ProceduralWorldGenerations.vcxproj
