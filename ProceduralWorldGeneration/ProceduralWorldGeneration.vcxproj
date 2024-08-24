@@ -31,7 +31,6 @@
     <ClCompile Include="src\vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Users\Petr\AppData\Local\Temp\Rar$DRa22924.45658\SDL2_image-2.8.2\include\SDL_image.h" />
     <ClInclude Include="src\Isometric.h" />
     <ClInclude Include="src\Perlin.h" />
     <ClInclude Include="src\vendor\imgui\imconfig.h" />

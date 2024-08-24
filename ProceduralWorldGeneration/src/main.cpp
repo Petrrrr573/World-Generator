@@ -82,8 +82,6 @@ int main(int, char**)
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        ImGui::ShowDemoWindow();
-
         {
             static float f = 0.0f;
             static int counter = 0;
@@ -171,7 +169,7 @@ int main(int, char**)
                             ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(138 / 255.0f, 138 / 255.0f, 138 / 255.0f));
                             ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(118 / 255.0f, 118 / 255.0f, 118 / 255.0f));
                             ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(98 / 255.0f, 98 / 255.0f, 98 / 255.0f));
-                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(118 / 255.0f, 118 / 255.0f, 118 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(78 / 255.0f, 78 / 255.0f, 78 / 255.0f));
                             ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.rockHeight, -1.0f, 1.0f, "");
                             if (ImGui::IsItemActive() || ImGui::IsItemHovered())
                                 ImGui::SetTooltip("%.3f", perlin.rockHeight);
@@ -184,7 +182,7 @@ int main(int, char**)
                             ImGui::PushStyleColor(ImGuiCol_FrameBg, (ImVec4)ImColor(220 / 255.0f, 220 / 255.0f, 220 / 255.0f));
                             ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, (ImVec4)ImColor(180 / 255.0f, 180 / 255.0f, 180 / 255.0f));
                             ImGui::PushStyleColor(ImGuiCol_FrameBgActive, (ImVec4)ImColor(180 / 255.0f, 180 / 255.0f, 180 / 255.0f));
-                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(180 / 255.0f, 180 / 255.0f, 180 / 255.0f));
+                            ImGui::PushStyleColor(ImGuiCol_SliderGrab, (ImVec4)ImColor(150 / 255.0f, 150 / 255.0f, 150 / 255.0f));
                             ImGui::VSliderFloat("##v", ImVec2(18, 160), &perlin.mountainsHeight, -1.0f, 1.0f, "");
                             if (ImGui::IsItemActive() || ImGui::IsItemHovered())
                                 ImGui::SetTooltip("%.3f", perlin.mountainsHeight);
