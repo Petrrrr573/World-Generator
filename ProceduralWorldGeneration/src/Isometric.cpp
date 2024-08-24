@@ -9,20 +9,20 @@ Isometric::Isometric(int size, float scale, float freq, int ampl, SDL_Renderer* 
 	waveAmpl = ampl;
 
 
-	waterTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/waterBlock.png");
-    sandTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/sandBlock.png");
-    grassTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/grassBlock.png");
-    hillTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/grassBlock.png");
-    rockTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/rockBlock.png");
-    mountainsTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/snowBlock.png");
+	waterTexture = IMG_LoadTexture(renderer, "src/assets/waterBlock.png");
+    sandTexture = IMG_LoadTexture(renderer, "src/assets/sandBlock.png");
+    grassTexture = IMG_LoadTexture(renderer, "src/assets/grassBlock.png");
+    hillTexture = IMG_LoadTexture(renderer, "src/assets/grassBlock.png");
+    rockTexture = IMG_LoadTexture(renderer, "src/assets/rockBlock.png");
+    mountainsTexture = IMG_LoadTexture(renderer, "src/assets/snowBlock.png");
 
-    woodTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/woodBlock.png");
-    leafTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/leafBlock.png");
+    woodTexture = IMG_LoadTexture(renderer, "src/assets/woodBlock.png");
+    leafTexture = IMG_LoadTexture(renderer, "src/assets/leafBlock.png");
 
-    woodTexture2 = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/woodBlock2.png");
-    leafTexture2 = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/leafBlock2.png");
+    woodTexture2 = IMG_LoadTexture(renderer, "src/assets/woodBlock2.png");
+    leafTexture2 = IMG_LoadTexture(renderer, "src/assets/leafBlock2.png");
 
-    outlineTexture = IMG_LoadTexture(renderer, "C:/Dev/Perlin Noise/Perlin Noise/src/assets/outline.png");
+    outlineTexture = IMG_LoadTexture(renderer, "src/assets/outline.png");
 }
 
 void Isometric::waves(SDL_Renderer* renderer, float heights[200 * 200][2]) {

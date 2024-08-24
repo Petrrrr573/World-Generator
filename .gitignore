@@ -361,7 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Perlin Noise/src/vendor/imgui
-/Perlin Noise/src/vendor/SDL/include
-/Perlin Noise/imgui.ini
-/Perlin Noise/src/assets
+/ProceduralWorldGeneration/src/vendor/imgui
+/ProceduralWorldGeneration/src/vendor/SDL/include
+/ProceduralWorldGeneration/imgui.ini
+/ProceduralWorldGeneration/src/assets
+/ProceduralWorldGeneration.sln
+/ProceduralWorldGeneration/ProceduralWorldGeneration.filters
+/ProceduralWorldGeneration/ProceduralWorldGeneration.vcxproj
+/ProceduralWorldGeneration/ProceduralWorldGenerations.vcxproj
