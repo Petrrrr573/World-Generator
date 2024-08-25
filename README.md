@@ -16,19 +16,19 @@ This is a small project, that shows what you can do with just a simple Perlin no
 ## Customization
 Small ImGui UI where you can change:
 
-* Perlin Noise Settings
+### Perlin Noise Settings
 - ![image](https://github.com/user-attachments/assets/e5479061-f91e-411b-8993-bc21cdaab39c)
-* Block type Heights
+### Block type Heights
 - ![image](https://github.com/user-attachments/assets/6a2a5616-c0cd-41a5-ac0e-126403be292b)
-* Isometric Projection Settings
+### Isometric Projection Settings
 - ![image](https://github.com/user-attachments/assets/28ee1e92-c8fa-4ec0-8e36-c9cb87886a09)
 
 ## Aditional things
-* Waves
+### Waves
 - ![image](https://github.com/user-attachments/assets/5dcb7e61-4395-4158-97e2-68b918c706e9)
-* Trees
+### Trees
 - ![image](https://github.com/user-attachments/assets/f23bf139-a1cd-4a98-9428-7dfd4b8528cd)
-* Block outline
+### Block outline
 - ![image](https://github.com/user-attachments/assets/dc1c1f31-db31-451d-ae41-42e289594c42)
 
 ## Screenshots
