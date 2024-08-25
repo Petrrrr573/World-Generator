@@ -25,11 +25,11 @@ Small ImGui UI where you can change:
 
 ## Aditional things
 * Waves
-  ![image](https://github.com/user-attachments/assets/5dcb7e61-4395-4158-97e2-68b918c706e9)
+- ![image](https://github.com/user-attachments/assets/5dcb7e61-4395-4158-97e2-68b918c706e9)
 * Trees
-  ![image](https://github.com/user-attachments/assets/f23bf139-a1cd-4a98-9428-7dfd4b8528cd)
+- ![image](https://github.com/user-attachments/assets/f23bf139-a1cd-4a98-9428-7dfd4b8528cd)
 * Block outline
-  ![image](https://github.com/user-attachments/assets/dc1c1f31-db31-451d-ae41-42e289594c42)
+- ![image](https://github.com/user-attachments/assets/dc1c1f31-db31-451d-ae41-42e289594c42)
 
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/a89112d3-cae7-4f6b-be3c-48b3ee1af055)
