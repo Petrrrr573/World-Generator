@@ -1,6 +1,6 @@
 # World Generator
 ![Commit activity](https://img.shields.io/github/commit-activity/t/Petrrrr573/World-Generator)
-
+![GitHub repo size](https://img.shields.io/github/repo-size/Petrrrr573/World-Generator)
 
 ## Isometric world made with procedural world generation
 
