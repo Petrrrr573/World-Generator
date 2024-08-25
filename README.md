@@ -1,5 +1,5 @@
 # World Generator
-![Commits](https://img.shields.io/github/commits-since/Petrrrr573/World-Generator/latest/maser)
+![Commit activity](https://img.shields.io/github/commit-activity/t/Petrrrr573/World-Generator)
 
 
 ## Isometric world made with procedural world generation
