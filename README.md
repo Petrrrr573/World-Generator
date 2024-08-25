@@ -11,7 +11,7 @@ This is a small project, that shows what you can do with just a simple Perlin no
 
 ## Resources
 * [Perlin Noise WIKI](https://en.wikipedia.org/wiki/Perlin_noise)
-* [Video that explains the isometric project the best](https://www.youtube.com/watch?v=04oQ2jOUjkU)
+* [Video that explains the isometric projection the best](https://www.youtube.com/watch?v=04oQ2jOUjkU)
 
 ## Customization
 Small ImGui UI where you can change:
