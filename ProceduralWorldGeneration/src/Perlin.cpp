@@ -137,7 +137,7 @@ void Perlin::genPerlin(std::vector<Cube>& Cubes, float worldBlockOffset, int xCa
                     heights[index / 4][1] = val;
 
                     if (val <= hillHeight-0.1 && val > grassHeight && rand() % treeChance == 1) {
-                        genTree(x, y, Cubes, heights[(y + yCamOf) * 200 + x + xCamOf][1], worldBlockOffset);
+                        genTree(x, y, Cubes, heights[(y) * 200 + x][1], worldBlockOffset);
                     }
                 }
                 else if (val <= grassHeight && val > sandHeight) {
