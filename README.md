@@ -10,18 +10,18 @@ This is a small project, that shows what you can do with just a simple Perlin no
 * Uses Isometric projection to create a simple world
 
 ## Resources
-[Perlin Noise WIKI](https://en.wikipedia.org/wiki/Perlin_noise)
-[Video that explains the isometric project the best](https://www.youtube.com/watch?v=04oQ2jOUjkU)
+* [Perlin Noise WIKI](https://en.wikipedia.org/wiki/Perlin_noise)
+* [Video that explains the isometric project the best](https://www.youtube.com/watch?v=04oQ2jOUjkU)
 
 ## Customization
 Small ImGui UI where you can change:
 
 * Perlin Noise Settings
-  ![image](https://github.com/user-attachments/assets/e5479061-f91e-411b-8993-bc21cdaab39c)
+- ![image](https://github.com/user-attachments/assets/e5479061-f91e-411b-8993-bc21cdaab39c)
 * Block type Heights
-  ![image](https://github.com/user-attachments/assets/6a2a5616-c0cd-41a5-ac0e-126403be292b)
+- ![image](https://github.com/user-attachments/assets/6a2a5616-c0cd-41a5-ac0e-126403be292b)
 * Isometric Projection Settings
-  ![image](https://github.com/user-attachments/assets/28ee1e92-c8fa-4ec0-8e36-c9cb87886a09)
+- ![image](https://github.com/user-attachments/assets/28ee1e92-c8fa-4ec0-8e36-c9cb87886a09)
 
 ## Aditional things
 * Waves
